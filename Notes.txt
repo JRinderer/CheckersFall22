@@ -1,0 +1,76 @@
+Overall Description:
+
+Rules:
+
+1. 2 players game
+2. 2 different colors (Red White)
+3. 2 different piece types (Regular, King)
+4. Regular pieces can only move towards the enemy, diagonly. One row up. One row right or left.
+__0-0____R-1____0-2____0-3____0-4____0-5____0-6____0-7__
+__1-0____1-1____1-2____1-3____1-4____1-5____1-6____1-7__
+__2-0____2-1____2-2____R2-3___2-4____2-5____2-6____2-7__
+__3-0____3-1____3-2____3-3____3-4____3-5____3-6____3-7__
+__4-0____4-1____4-2____4-3____4-4____4-5____4-6____4-7__
+__W5-0___5-1____W5-2___5-3____W5-4___5-5____W5-6___5-7__
+__6-0____W6-1___6-2____W6-3___6-4____W6-5___6-6____W6-7_
+__W7-0___7-1____W7-2___7-3____W7-4___7-5____W7-6___7-7__
+
+R-1 can move to:
+    1-2 or 1-0
+W5-2 can move to:
+    4-1 or 4-3
+
+5. Regular piece can jump only towards the enemy diagonly. Two rows up, 2 colums right or left.
+6. Moves are turn based. Red player goes first. After player moves, turns switch.
+7. Regular pieces can be promoted to king pieces, only when they reach the last row of the enemy pieces.
+8. King pieces can move forward or backward, but follow the same diagonly rules that regular pieces follow.
+9. Double jumps are also allowed, assuming the same rules for regular jumps applies.
+10. Game is over when player surrenders, or all enemy pieces have been removed from the board.
+
+Object Design:
+
+1. Board: 8x8 grid of squares of red and black squares.
+    Board needs to organize and present the squares in some usable way.
+    In order to set pieces down, we're going to set them down on the board.
+    The Squares will not be accessible outside of the board. The board will also need some way of
+    presenting itself visually to the user. We could also write a function to remove a piece from the square
+    so that when we move pieces or jump them, we can simply call this funciton.
+
+2. Squares: Representation of an x and y intersection that will hold a piece.
+3. Pieces: These are all the game pieces that we need to play a game. And two types exist:
+    1. Regular pieces
+    2. King Pieces
+    3. Logic around your pieces.
+    4. For Column Math I can use ABS
+    5. For row math I cannot use ABS for Regular pieces, but I can for King pieces.
+4. Players: a player will control pieces of their own color.
+5. Game: this is what will own and organize all the other classes.
+
+Functional Design:
+
+1. Board:
+    xWe need to set the board in a default state.
+    xWe need to display the board in it's current state.
+    xWe need to be able to place a piece down on the board
+    We need to remove the piece from the board.
+    We need to be able to GET the piece on a x,y
+    xThe board will contain Pieces
+    xThe board will contain squares
+
+2. Square:
+    xWe need to GET a piece on a square
+    xWe need to SET a piece on a square
+    xWe need to be able to remove a piece
+    xThe square will contain a Piece
+
+3. Pieces:
+    We need to be able to move a piece
+    We need to be able to upgrade a regular piece to King piece
+
+4 Player:
+    We need to set a player turn
+    We need to get a players turn
+    We need to check if that player won
+    We need to get a list of their pieces
+    Each player will have a group Pieces
+        This will be shared across the game.
