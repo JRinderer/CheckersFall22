@@ -6,6 +6,7 @@ public interface Piece {
     String color="";
 
 
+
     public String getName();
     public String getFriendly_name();
     public String getColor();
@@ -13,6 +14,9 @@ public interface Piece {
     public void setName(String name);
     public void setFriendly_name(String name);
     public void setColor(String color);
+
+    public boolean Move(Board board, int x, int y);
+
 
 
 }

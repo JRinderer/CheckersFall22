@@ -57,18 +57,18 @@ public class Board implements Serializable {
         int pieceCounter = 0;
         for(int y = 0;y<8;y++){
             if(y%2==0){
-                RegularPiece thisPiece = new RegularPiece();
+                RegularPiece thisPiece = new RegularPiece(color,row,y);
                 setPieceOnSpace(thisPiece,row,y);
-                thisPiece.setName("__"+ color +  row + "-" + y + "_" );
+                //thisPiece.setName("__"+ color +  row + "-" + y + "_" );
                 thisPiece.setFriendly_name(color + row + "-" + y);
                 //thisPiece.setxCord(row);
                 //thisPiece.setyCord(y);
                 pieces.add(thisPiece);
             }
             else{
-                RegularPiece emptyPiece = new RegularPiece();
+                RegularPiece emptyPiece = new RegularPiece(row,y,"");
                 setPieceOnSpace(emptyPiece,row,y);
-                emptyPiece.setName("__" + row + "-" + y + "__");
+                //emptyPiece.setName("__" + row + "-" + y + "__");
                 emptyPiece.setFriendly_name("empty");
             }
 
@@ -77,9 +77,9 @@ public class Board implements Serializable {
 
     public void sentAllBlank(int row){
         for (int y=0;y<8;y++){
-            RegularPiece emptyPiece = new RegularPiece();
+            RegularPiece emptyPiece = new RegularPiece(row,y,"");
             setPieceOnSpace(emptyPiece,row,y);
-            emptyPiece.setName("__" + row + "-" + y + "__");
+            //emptyPiece.setName("__" + row + "-" + y + "__");
             emptyPiece.setFriendly_name("empty");
         }
     }
@@ -89,18 +89,18 @@ public class Board implements Serializable {
         int pieceCounter = 0;
         for(int y = 0;y<8;y++){
             if(y%2!=0){
-                RegularPiece thisPiece = new RegularPiece();
+                RegularPiece thisPiece = new RegularPiece(color,row,y);
                 setPieceOnSpace(thisPiece,row,y);
-                thisPiece.setName("__"+ color +  row + "-" + y + "_" );
+                //thisPiece.setName("__"+ color +  row + "-" + y + "_" );
                 thisPiece.setFriendly_name(color + row + "-" + y);
                 //thisPiece.setxCord(row);
                 //thisPiece.setyCord(y);
                 pieces.add(thisPiece);
             }
             else{
-                RegularPiece emptyPiece = new RegularPiece();
+                RegularPiece emptyPiece = new RegularPiece(row,y,"");
                 setPieceOnSpace(emptyPiece,row,y);
-                emptyPiece.setName("__" + row + "-" + y + "__");
+                //emptyPiece.setName("__" + row + "-" + y + "__");
                 emptyPiece.setFriendly_name("empty");
             }
 
@@ -111,7 +111,23 @@ public class Board implements Serializable {
         squares[x][y].setPiece(piece);
     }
 
+    public boolean isSquareEmpty(int x, int y){
+        if(squares[x][y].getPiece().getFriendly_name().equals("empty")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void removePieceOnSpace(int x, int y){
+        Piece emptyPiece = new RegularPiece(x,y,"");
+        setPieceOnSpace(emptyPiece,x,y);
+        //emptyPiece.setName("__" + x + "-" + y + "__");
+        emptyPiece.setFriendly_name("empty");
+    }
+
     public ArrayList<Piece> showBoard(){
+        System.out.println("=====================================================================");
         ArrayList<Piece> piece_list = new ArrayList<>();
         for (int x=0;x<8;x++){
             for(int y = 0;y<8;y++){

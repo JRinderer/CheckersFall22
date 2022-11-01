@@ -74,3 +74,28 @@ Functional Design:
     We need to get a list of their pieces
     Each player will have a group Pieces
         This will be shared across the game.
+
+
+
+        ===============
+            public boolean Move(Board b, int x, int y) {
+                boolean ret_value = false;
+                if (this.color.equals("R")) {
+                    if ((Math.abs(y - this.y)) == 1 && (x == this.x + 1) && b.isSquareEmpty(x, y)) {
+                        b.setPieceOnSpace(this, x, y);
+                        b.removePieceOnSpace(this.x, this.y);
+                        this.x = x;
+                        this.y = y;
+                        ret_value = true;
+                    }
+                    } else {
+                        if ((Math.abs(y - this.y)) == 1 && (x == this.x - 1) && b.isSquareEmpty(x, y)) {
+                            b.setPieceOnSpace(this, x, y);
+                            b.removePieceOnSpace(this.x, this.y);
+                            this.x = x;
+                            this.y = y;
+                            ret_value = true;
+                        }
+                    }
+                return ret_value;
+            }
