@@ -99,3 +99,17 @@ Functional Design:
                     }
                 return ret_value;
             }
+
+I want a client that can connect to the server. I want to be able to display on the client the board, and all the pieces on the board. I want the client to be able to send information to the server to move game pieces.
+
+=====================================================================
+__0-0____R0-1___0-2____R0-3___0-4____R0-5___0-6____R0-7_
+__R1-0___1-1____R1-2___1-3____R1-4___1-5____R1-6___1-7__
+__2-0____R2-1___2-2____R2-3___2-4____R2-5___2-6____R2-7_
+__3-0____3-1____3-2____3-3____3-4____3-5____3-6____3-7__
+__4-0____4-1____4-2____4-3____4-4____4-5____4-6____4-7__
+__W5-0___5-1____W5-2___5-3____W5-4___5-5____W5-6___5-7__
+__6-0____W6-1___6-2____W6-3___6-4____W6-5___6-6____W6-7_
+__W7-0___7-1____W7-2___7-3____W7-4___7-5____W7-6___7-7__
+Enter a piece name:
+
