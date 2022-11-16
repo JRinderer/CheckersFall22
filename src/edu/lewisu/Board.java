@@ -126,6 +126,19 @@ public class Board implements Serializable {
         emptyPiece.setFriendly_name("empty");
     }
 
+    public String serializeBoard(){
+        String line= "board:\n";
+
+        for (int x =0; x<8;x++){
+            for (int y =0; y<8;y++){
+                line = line + squares[x][y].getPiece().getName();
+            }
+            line = line + "\n";
+        }
+        line = line +"";
+        return line;
+    }
+
     public ArrayList<Piece> showBoard(){
         System.out.println("=====================================================================");
         ArrayList<Piece> piece_list = new ArrayList<>();

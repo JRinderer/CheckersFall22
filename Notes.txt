@@ -100,7 +100,9 @@ Functional Design:
                 return ret_value;
             }
 
-I want a client that can connect to the server. I want to be able to display on the client the board, and all the pieces on the board. I want the client to be able to send information to the server to move game pieces.
+I want a client that can connect to the server.
+I want to be able to display on the client the board, and all the pieces on the board.
+I want the client to be able to send information to the server to move game pieces.
 
 =====================================================================
 __0-0____R0-1___0-2____R0-3___0-4____R0-5___0-6____R0-7_

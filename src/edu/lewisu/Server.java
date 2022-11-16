@@ -13,14 +13,15 @@ public class Server {
     private ExecutorService pool = Executors.newFixedThreadPool(2);
 
     public Server(int port){
-
+        Game thisGame = new Game();
+        thisGame.Start("R","W");
         try{
             serverSocket = new ServerSocket(port);
-            
             while(true){
                 client_socket = serverSocket.accept();
                 System.out.println("Someone connected");
-
+                ClientProcessing playerThread = new ClientProcessing(client_socket,thisGame);
+                pool.execute(playerThread);
             }
 
         }catch (Exception ex){
@@ -29,7 +30,7 @@ public class Server {
     }
 
     public static void main(String args[]){
-        Server server = new Server(4269);
+        Server server = new Server(42691);
     }
 
 }
