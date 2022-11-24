@@ -43,12 +43,12 @@ public class Game implements Serializable {
 
     public boolean isColorAvail(String color){
         System.out.println(color);
-        if(!this.red_player.getColor().equals("") && color.equals("R")){
-            //System.out.println("RED");
+        if(this.red_player.getColor().equals("") && color.equals("R")){
+            System.out.println("RED");
             setColors(color);
             return true;
-        }else if(!this.white_player.getColor().equals("") && color.equals("W")){
-            //System.out.println("White");
+        }else if(this.white_player.getColor().equals("") && color.equals("W")){
+            System.out.println("White");
             setColors(color);
             return true;
         }else{
@@ -65,11 +65,15 @@ public class Game implements Serializable {
         boolean validMove = false;
         String returnString = "";
         Piece pieceHolder= new RegularPiece();
+        ArrayList<Player> players = new ArrayList<>();
 
         if (!x_str.equals("") && !y_str.equals("")) {
             x = Integer.parseInt(x_str);
             y = Integer.parseInt(y_str);
         }
+
+        players.add(this.red_player);
+        players.add(this.white_player);
 
         this.current_player = Player.get_player_turn(this.red_player,this.white_player);
         System.out.println("The current player color is : "  + this.current_player.getColor());
@@ -87,13 +91,19 @@ public class Game implements Serializable {
             System.out.println("Here" + ex);
         }
 
-        validMove = pieceHolder.Move(this.board,x,y);
-        if(!validMove){
+        try {
+            validMove = pieceHolder.Move(this.board, x, y);
+            if (!validMove) {
+                returnString = "error:Invalid_Move";
+            } else {
+                returnString = "success:Piece_moved";
+                Player.flipTurn(players);
+            }
+        }catch (Exception ex){
             returnString = "error:Invalid_Move";
-        }else{
-            returnString = "success:Piece_moved";
         }
         returnString = this.board.serializeBoard() + "," + returnString;
+        System.out.println(returnString);
         return returnString;
     }
 

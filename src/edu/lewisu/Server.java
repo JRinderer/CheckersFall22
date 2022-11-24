@@ -14,7 +14,7 @@ public class Server {
 
     public Server(int port){
         Game thisGame = new Game();
-        thisGame.Start("R","W");
+        thisGame.Start("","");
         try{
             serverSocket = new ServerSocket(port);
             while(true){

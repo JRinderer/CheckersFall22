@@ -61,7 +61,9 @@ public class ClientProcessing implements Runnable{
                 send_back = game.processPlayerInput(piece_name,x_cord,y_cord,this.color,"");
                 this.data_out.writeUTF(send_back);
             }else if(client_message_type.equals("color_set")){
+                System.out.println("This should run first");
                 if(game.isColorAvail(parseClientMessage("color"))){
+                    System.out.println("The color sent is: " + parseClientMessage("color"));
                     this.color = parseClientMessage("color");
                     send_back = "color:" + this.color;
                     send_back = game.seralizeBoard() + "," + send_back + "";
